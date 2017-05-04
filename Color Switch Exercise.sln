@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{3A6EFBB1-9C24-939E-1F4E-CD6C010F2CEA}") = "Color Switch Exercise", "Assembly-CSharp.csproj", "{9BA73152-B312-448C-6C2C-C38AF22D52E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9BA73152-B312-448C-6C2C-C38AF22D52E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BA73152-B312-448C-6C2C-C38AF22D52E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BA73152-B312-448C-6C2C-C38AF22D52E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BA73152-B312-448C-6C2C-C38AF22D52E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal

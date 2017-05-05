@@ -17,13 +17,21 @@ public class TouchPadController : MonoBehaviour {
 		rb2d = dynamicObj.GetComponent<Rigidbody2D> ();
 		lastPos = dynamicObj.transform.position;
 
+
 		/*offset = mainCam.transform.position - this.transform.position;
 		PlayerlastPos = gameObject.transform.position;*/
 	} 
 
 	public void playerJump(){
-		rb2d.velocity = new Vector2(0f,0f);
+		this.gameObject.GetComponent<Rigidbody2D> ().gravityScale = 1f;
+		this.gameObject.GetComponent<Rigidbody2D> ().velocity = rb2d.velocity = new Vector2(0f,0f);
 		rb2d.AddForce (new Vector2(0,upForce*-1));
+		if(this.gameObject.transform.position.y<4.7f){
+			this.gameObject.GetComponent<Rigidbody2D> ().AddForce (new Vector2(0,upForce*1));
+		}
+
+
+
 
 
 	}

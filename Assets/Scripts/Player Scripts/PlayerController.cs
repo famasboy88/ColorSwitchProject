@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 
 
 
+
 	public void setPlayerType(int data){
 		this.playerType = data;
 	}
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour {
 	void  OnTriggerEnter2D(Collider2D target){
 		if(target.tag=="Enemy"){
 			Destroy (this.gameObject);
+
 		}
 	}
 }

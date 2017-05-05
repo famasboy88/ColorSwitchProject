@@ -8,6 +8,15 @@ public class TouchPadController : MonoBehaviour {
 	public GameObject dynamicObj;
 	private Rigidbody2D rb2d;
 	private Vector3 lastPos;
+	private bool isDead=false;
+
+	public void setIsDead(bool var){
+		this.isDead = var;
+	}
+
+	public bool getIsDead(){
+		return this.isDead;
+	}
 	/*public GameObject mainCam;
 	Vector3 offset;
 	public Vector3 PlayerlastPos = new Vector3(0f,0f,0f);*/
@@ -23,25 +32,36 @@ public class TouchPadController : MonoBehaviour {
 	} 
 
 	public void playerJump(){
-		this.gameObject.GetComponent<Rigidbody2D> ().gravityScale = 1f;
-		this.gameObject.GetComponent<Rigidbody2D> ().velocity = rb2d.velocity = new Vector2(0f,0f);
-		if(this.gameObject.transform.position.y>-0.63f){
-			rb2d.AddForce (new Vector2(0,upForce*-1));
-		}
-		if(this.gameObject.transform.position.y<4.7f){
-			this.gameObject.GetComponent<Rigidbody2D> ().AddForce (new Vector2(0,upForce*1));
+		if(this.isDead==false){
+			this.gameObject.GetComponent<Rigidbody2D> ().gravityScale = 1f;
+			this.gameObject.GetComponent<Rigidbody2D> ().velocity = rb2d.velocity = new Vector2(0f,0f);
+			if(this.gameObject.transform.position.y>-0.63f){
+				rb2d.AddForce (new Vector2(0,upForce*-1));
+			}
+			if(this.gameObject.transform.position.y<4.7f){
+				this.gameObject.GetComponent<Rigidbody2D> ().AddForce (new Vector2(0,upForce*1));
+			}
 		}
 	}
 
 	void FixedUpdate(){
-		if (dynamicObj.transform.position.y > lastPos.y) {
+		if(this.isDead==false){
+			if (dynamicObj.transform.position.y > lastPos.y) {
+				rb2d.gravityScale = 0f;
+				rb2d.velocity = new Vector2(0f,0f);
+			} else {
+				rb2d.gravityScale = -1f;
+			}
+			if(dynamicObj.transform.position.y<=lastPos.y){
+				lastPos = dynamicObj.transform.position;
+			}
+		}else{
+			dynamicObj.transform.position = lastPos;
 			rb2d.gravityScale = 0f;
-			rb2d.velocity = new Vector2(0f,0f);
-		} else {
-			rb2d.gravityScale = -1f;
+			rb2d.velocity = new Vector2(0f,0f);	
+
 		}
-		if(dynamicObj.transform.position.y<lastPos.y){
-			lastPos = dynamicObj.transform.position;
-		}
+		print (this.isDead==false);
+	
 	}
 }

@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
 	public Sprite[] playerSprite;
 	private int playerType;
-
+	public GameObject gameController;
 
 
 
@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour {
 
 	void  OnTriggerEnter2D(Collider2D target){
 		if(target.tag=="Enemy"){
+			gameController.GetComponent<GameController> ().setIsDead (true);
 			Destroy (this.gameObject);
 
 		}

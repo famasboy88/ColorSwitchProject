@@ -3,35 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TouchPadController : MonoBehaviour {
-
+	
 	public float upForce = 200f;
+	public GameObject dynamicObj;
 	private Rigidbody2D rb2d;
-
-	public GameObject mainCam;
+	private Vector3 lastPos;
+	/*public GameObject mainCam;
 	Vector3 offset;
-	public Vector3 PlayerlastPos = new Vector3(0f,0f,0f);
+	public Vector3 PlayerlastPos = new Vector3(0f,0f,0f);*/
 
 
 	void Start(){
-		rb2d = GetComponent<Rigidbody2D> ();
+		rb2d = dynamicObj.GetComponent<Rigidbody2D> ();
+		lastPos = dynamicObj.transform.position;
 
-		offset = mainCam.transform.position - this.transform.position;
-		PlayerlastPos = gameObject.transform.position;
+		/*offset = mainCam.transform.position - this.transform.position;
+		PlayerlastPos = gameObject.transform.position;*/
 	} 
 
 	public void playerJump(){
-		rb2d.velocity = Vector2.zero;
-		rb2d.AddForce (new Vector2(0,upForce));
+		rb2d.velocity = new Vector2(0f,0f);
+		rb2d.AddForce (new Vector2(0,upForce*-1));
 
 
 	}
 
 	void FixedUpdate(){
-		if(gameObject.transform.position.y>=PlayerlastPos.y){
-			mainCam.transform.position = gameObject.transform.position + offset;
+
+		if (dynamicObj.transform.position.y > lastPos.y) {
+			rb2d.gravityScale = 0f;
+			rb2d.velocity = new Vector2(0f,0f);
+		} else {
+			rb2d.gravityScale = -1f;
 		}
-		if(PlayerlastPos.y<gameObject.transform.position.y){
-			PlayerlastPos = gameObject.transform.position;
+
+		if(dynamicObj.transform.position.y<lastPos.y){
+			lastPos = dynamicObj.transform.position;
 		}
+
+		print (lastPos.y);
+		print (dynamicObj.transform.position.y);
 	}
 }

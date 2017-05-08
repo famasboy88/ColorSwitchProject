@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
 	public Sprite[] playerSprite;
 	private int playerType;
-	public GameObject gameController;
+
 
 
 	public void setPlayerType(int data){
@@ -20,8 +20,9 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		int random = Random.Range (0, playerSprite.Length-1);
-		this.gameObject.GetComponent<SpriteRenderer> ().sprite = playerSprite [random];
 		this.setPlayerType (random);
+		this.gameObject.GetComponent<SpriteRenderer> ().sprite = playerSprite [this.getPlayerType()];
+
 		/*print (this.getPlayerType());*/
 		/*print (playerSprite.Length);*/
 	}
@@ -30,7 +31,8 @@ public class PlayerController : MonoBehaviour {
 
 	void  OnTriggerEnter2D(Collider2D target){
 		if(target.tag=="Enemy"){
-			gameController.GetComponent<GameController> ().setIsDead (true);
+			GameController.instance.setIsDead (true);
+			GameController.instance.playerDied ();
 			Destroy (this.gameObject);
 		}
 	}

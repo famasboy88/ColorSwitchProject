@@ -2,19 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class VerticalPoolController : MonoBehaviour {
-	private GameObject[] verticalObjects;
-	private Vector2 objPoolPos = new Vector2(-15f,-25f);
-	private float timeSinceLastSpawned;
-	public float spawnRate=4f;
-	public GameObject prefabObj;
-	public int poolsize;
+
+	public List<GameObject> levels;
+	
+	//private GameObject[] ArrayObjectsHolder;
+	//public GameObject prefabObj;
+	public GameObject parentObj;
+	//public int poolsize;
+	private int randomLvl=0;
+
+	//private Vector2 objPoolPos = new Vector2(0f,-2f);
+
+	public float spawnPosition=10f;
+
+	public float positionLimit;
+	private bool isLevelLoaded = false;
 
 	void Start(){
-		verticalObjects = new GameObject[poolsize];
+		/*ArrayObjectsHolder = new GameObject[poolsize];
 		for(int i=0;i<poolsize;i++){
-			verticalObjects [i] = (GameObject)Instantiate (prefabObj, objPoolPos, Quaternion.identity);
-		}
+			ArrayObjectsHolder [i] = (GameObject)Instantiate (prefabObj, objPoolPos, Quaternion.identity);
+			ArrayObjectsHolder [i].transform.parent = parentObj.transform;
+		}*/
+
+		levels [randomLvl].transform.position = new Vector2 (0f,spawnPosition);
+		levels [randomLvl].transform.parent = parentObj.transform;
+		isLevelLoaded = true;
+
 	}
 
+	void Update(){
+		if (GameController.instance.gameOver == false) {
+			if(isLevelLoaded==false){
+				randomLvl = Random.Range (0,levels.Count);
+
+				levels [randomLvl].transform.position = new Vector2 (0f,spawnPosition);
+				levels [randomLvl].transform.parent = parentObj.transform;
+				isLevelLoaded = true;
+			}
+			if(levels[randomLvl].transform.position.y<=positionLimit){
+				isLevelLoaded = false;
+			}
+			print (isLevelLoaded);
+			print (levels[randomLvl].transform.position.y);
+		}
+	}
 }

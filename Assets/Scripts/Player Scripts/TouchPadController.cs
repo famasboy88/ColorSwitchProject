@@ -8,7 +8,7 @@ public class TouchPadController : MonoBehaviour {
 	public GameObject dynamicObj;
 	private Rigidbody2D rb2d;
 	private Vector3 lastPos;
-	public GameObject GameController;
+
 	public GameObject player;
 
 
@@ -19,20 +19,19 @@ public class TouchPadController : MonoBehaviour {
 	} 
 		
 	void playerJump(){
-		if (GameController.GetComponent<GameController> ().getIsDead () == false) {
+		if (GameController.instance.getIsDead () == false) {
 			player.GetComponent<Rigidbody2D> ().gravityScale = 1f;
 			player.GetComponent<Rigidbody2D> ().velocity = rb2d.velocity = new Vector2 (0f, 0f);
-			if (player.transform.position.y > -1) {
+			player.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, upForce * 1));
+			if (player.transform.position.y > -3f) {
 				rb2d.AddForce (new Vector2 (0, upForce * -1));
 			}
-			if (player.transform.position.y < 4.7f) {
-				player.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, upForce * 1));
-			}
+
 		}
 	}
 
-	void FixedUpdate(){
-		if(GameController.GetComponent<GameController> ().getIsDead()==false){
+	void Update(){
+		if(GameController.instance.getIsDead()==false){
 			if (dynamicObj.transform.position.y > lastPos.y) {
 				rb2d.gravityScale = 0f;
 				rb2d.velocity = new Vector2(0f,0f);

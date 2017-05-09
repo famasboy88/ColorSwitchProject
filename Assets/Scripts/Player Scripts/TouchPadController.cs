@@ -23,7 +23,7 @@ public class TouchPadController : MonoBehaviour {
 			player.GetComponent<Rigidbody2D> ().gravityScale = 1f;
 			player.GetComponent<Rigidbody2D> ().velocity = rb2d.velocity = new Vector2 (0f, 0f);
 			player.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, upForce * 1));
-			if (player.transform.position.y > -3f) {
+			if (player.transform.position.y > -2.5f) {
 				rb2d.AddForce (new Vector2 (0, upForce * -1));
 			}
 
@@ -36,7 +36,13 @@ public class TouchPadController : MonoBehaviour {
 				rb2d.gravityScale = 0f;
 				rb2d.velocity = new Vector2(0f,0f);
 			} else {
+				if(player.transform.position.y > 0f){
+					rb2d.AddForce (new Vector2(0,-8f));
+				}else if(player.transform.position.y > 2f){
+					rb2d.AddForce (new Vector2(0,-11f));
+				}
 				rb2d.gravityScale = -1f;
+
 			}
 			if(dynamicObj.transform.position.y<lastPos.y){
 				lastPos = dynamicObj.transform.position;

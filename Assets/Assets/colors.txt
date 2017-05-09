@@ -1,0 +1,5 @@
+Blue - 00fcff
+white - ffffbe
+
+Orange - ff8a00
+Green - 00ff00

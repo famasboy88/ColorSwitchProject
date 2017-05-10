@@ -5,10 +5,19 @@ public class ArrowEnemyControllerRight : MonoBehaviour
 {
 
 
-	public float speed = 3;
+	private float speed;
+	public float fast;
+	public float normal;
 	public float dir = -1f;
+	private float posLimit1 = 0.08510233f;
+	private float posLimit2 = 0.9851021f;
 
 	void Update(){
+		if(transform.position.x>=posLimit1 && transform.position.x<=posLimit2){
+			speed = fast;
+		}else{
+			speed = normal;
+		}
 		transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * dir * speed);
 	}
 

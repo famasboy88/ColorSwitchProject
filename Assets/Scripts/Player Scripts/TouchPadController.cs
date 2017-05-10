@@ -30,13 +30,13 @@ public class TouchPadController : MonoBehaviour {
 		}
 	}
 
-	void Update(){
+	void FixedUpdate(){
 		if(GameController.instance.getIsDead()==false){
 			if (dynamicObj.transform.position.y > lastPos.y) {
 				rb2d.gravityScale = 0f;
 				rb2d.velocity = new Vector2(0f,0f);
 			} else {
-				if(player.transform.position.y > 0f){
+				if(player.transform.position.y > 1f){
 					rb2d.AddForce (new Vector2(0,-8f));
 				}else if(player.transform.position.y > 2f){
 					rb2d.AddForce (new Vector2(0,-11f));

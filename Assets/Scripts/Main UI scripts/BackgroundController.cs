@@ -15,7 +15,7 @@ public class BackgroundController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if(transform.position.y< -backgroundLength){
 			repositionBackground ();
 		}

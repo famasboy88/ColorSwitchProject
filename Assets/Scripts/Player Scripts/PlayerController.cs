@@ -19,9 +19,8 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		int random = Random.Range (0, playerSprite.Length-1);
-		this.setPlayerType (random);
-		this.gameObject.GetComponent<SpriteRenderer> ().sprite = playerSprite [this.getPlayerType()];
+		this.setPlayerType (0);
+		this.gameObject.GetComponent<SpriteRenderer> ().sprite = playerSprite [0];
 
 		/*print (this.getPlayerType());*/
 		/*print (playerSprite.Length);*/
@@ -34,6 +33,20 @@ public class PlayerController : MonoBehaviour {
 			GameController.instance.setIsDead (true);
 			GameController.instance.playerDied ();
 			Destroy (this.gameObject);
+		}
+
+		if (target.tag == "switchWhite") {
+			this.gameObject.GetComponent<SpriteRenderer> ().sprite = playerSprite [0];
+			GameObject.FindGameObjectWithTag ("switchWhite").SetActive (false);
+		} else if (target.tag == "switchBlue") {
+			this.gameObject.GetComponent<SpriteRenderer> ().sprite = playerSprite [1];
+			GameObject.FindGameObjectWithTag ("switchBlue").SetActive (false);
+		} else if (target.tag == "switchGreen") {
+			this.gameObject.GetComponent<SpriteRenderer> ().sprite = playerSprite [2];
+			GameObject.FindGameObjectWithTag ("switchGreen").SetActive (false);
+		} else if (target.tag == "switchOrange") {
+			this.gameObject.GetComponent<SpriteRenderer> ().sprite = playerSprite [3];
+			GameObject.FindGameObjectWithTag ("switchOrange").SetActive (false);
 		}
 	}
 }

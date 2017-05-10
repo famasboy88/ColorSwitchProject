@@ -38,7 +38,7 @@ public class TouchPadController : MonoBehaviour {
 			} else {
 				if(player.transform.position.y > 1f){
 					rb2d.AddForce (new Vector2(0,-8f));
-				}else if(player.transform.position.y > 2f){
+				}else if(player.transform.position.y > 1.5f){
 					rb2d.AddForce (new Vector2(0,-11f));
 				}
 				rb2d.gravityScale = -1f;

@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\Enemy Scripts\ArrowEnemyControllerRight.cs" />
      <Compile Include="Assets\Scripts\Enemy Scripts\ArrowSpinning.cs" />
      <Compile Include="Assets\Scripts\Enemy Scripts\LineEnemyController.cs" />
+     <Compile Include="Assets\Scripts\Enemy Scripts\RotateController.cs" />
      <Compile Include="Assets\Scripts\Main UI scripts\BackgroundController.cs" />
      <Compile Include="Assets\Scripts\Main UI scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\Main UI scripts\VerticalPoolController.cs" />

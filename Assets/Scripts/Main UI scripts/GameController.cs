@@ -3,10 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 	public static GameController instance;
 	public GameObject gameOverText;
+	public Text ScoreText;
+	public Text HighScoreText;
+	private int score=0;
 	public bool gameOver = false;
 	private bool isDead = false;
 
@@ -34,7 +38,20 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void playerDied(){
+		if(score > PlayerPrefs.GetInt("Highscore")){
+			PlayerPrefs.SetInt ("Highscore",score);
+		}
+		HighScoreText.text = PlayerPrefs.GetInt ("Highscore").ToString();
 		gameOverText.SetActive (true);
 		gameOver = true;
+	}
+
+	public void playerScored(){
+		if(gameOver){
+			return;
+		}
+		score++;
+		ScoreText.text = "Score: " + score.ToString ();
+
 	}
 }

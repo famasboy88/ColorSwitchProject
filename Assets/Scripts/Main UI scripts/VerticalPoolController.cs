@@ -16,6 +16,7 @@ public class VerticalPoolController : MonoBehaviour {
 	//private Vector2 objPoolPos = new Vector2(0f,-2f);
 
 	public float spawnPosition=10f;
+	private Component[] scripts;
 
 	public float positionLimit;
 	private bool isLevelLoaded = false;
@@ -33,17 +34,21 @@ public class VerticalPoolController : MonoBehaviour {
 
 	}
 
-	void FixedUpdate(){
+	void Update(){
 		if (GameController.instance.gameOver == false) {
 			if(isLevelLoaded==false){
 				randomLvl = Random.Range (0,levels.Count);
 				levels [randomLvl].transform.position = new Vector2 (0f,spawnPosition);
 				levels [randomLvl].transform.parent = parentObj.transform;
-				isLevelLoaded = true;
+				scripts = levels [randomLvl].GetComponentsInChildren<RotateController> ();
+				foreach(RotateController s in scripts){
+					s.RandomRotation ();
+				}
+
 				for(int i = 0 ; i <ArrayPowerupHolder.Length;i++){
 					ArrayPowerupHolder [i].SetActive (true);
 				}
-
+				isLevelLoaded = true;
 			}
 			if(levels[randomLvl].transform.position.y<=positionLimit){
 				isLevelLoaded = false;

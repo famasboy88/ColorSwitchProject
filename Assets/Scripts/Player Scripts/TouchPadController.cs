@@ -30,7 +30,7 @@ public class TouchPadController : MonoBehaviour {
 		}
 	}
 
-	void FixedUpdate(){
+	void Update(){
 		if(GameController.instance.getIsDead()==false){
 			if (dynamicObj.transform.position.y > lastPos.y) {
 				rb2d.gravityScale = 0f;

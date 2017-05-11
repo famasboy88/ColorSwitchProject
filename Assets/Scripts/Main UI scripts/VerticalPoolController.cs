@@ -26,7 +26,7 @@ public class VerticalPoolController : MonoBehaviour {
 			ArrayObjectsHolder [i] = (GameObject)Instantiate (prefabObj, objPoolPos, Quaternion.identity);
 			ArrayObjectsHolder [i].transform.parent = parentObj.transform;
 		}*/
-
+		randomLvl = Random.Range (0,levels.Count);
 		levels [randomLvl].transform.position = new Vector2 (0f,spawnPosition);
 		levels [randomLvl].transform.parent = parentObj.transform;
 		isLevelLoaded = true;
@@ -43,6 +43,7 @@ public class VerticalPoolController : MonoBehaviour {
 				for(int i = 0 ; i <ArrayPowerupHolder.Length;i++){
 					ArrayPowerupHolder [i].SetActive (true);
 				}
+
 			}
 			if(levels[randomLvl].transform.position.y<=positionLimit){
 				isLevelLoaded = false;

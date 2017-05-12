@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour {
 	private int score=0;
 	public bool gameOver = false;
 	private bool isDead = false;
+	public float CameraShake=0.1f;
+	public float CameraShakeLenth=1f;
 
 	void Awake(){
 		if(instance==null){
@@ -38,12 +40,13 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void playerDied(){
+		gameObject.GetComponent<CameraShakeController> ().shake (CameraShake,CameraShakeLenth);
 		if(score > PlayerPrefs.GetInt("Highscore")){
 			PlayerPrefs.SetInt ("Highscore",score);
 		}
 		HighScoreText.text = PlayerPrefs.GetInt ("Highscore").ToString();
-		gameOverText.SetActive (true);
 		gameOver = true;
+		Invoke ("doSetActive",0.5f);
 	}
 
 	public void playerScored(){
@@ -53,5 +56,9 @@ public class GameController : MonoBehaviour {
 		score++;
 		ScoreText.text = "Score: " + score.ToString ();
 
+	}
+
+	void doSetActive(){
+		gameOverText.SetActive (true);
 	}
 }

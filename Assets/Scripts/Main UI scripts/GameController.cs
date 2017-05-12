@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour {
 	private bool isDead = false;
 	public float CameraShake=0.1f;
 	public float CameraShakeLenth=1f;
+	public GameObject[] deadPlayer;
+	public GameObject player;
 
 	void Awake(){
 		if(instance==null){
@@ -32,7 +34,7 @@ public class GameController : MonoBehaviour {
 		return this.isDead;
 	}
 
-	void FixedUpdate(){
+	void Update(){
 		if(gameOver == true && Input.GetMouseButtonDown(0)){
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 			gameOver = false;
@@ -41,11 +43,17 @@ public class GameController : MonoBehaviour {
 
 	public void playerDied(){
 		gameObject.GetComponent<CameraShakeController> ().shake (CameraShake,CameraShakeLenth);
+		Instantiate (deadPlayer [player.GetComponent<PlayerController> ().getPlayerType ()], player.transform.position, player.transform.rotation);
+
+		foreach(Rigidbody2D rgb2 in deadPlayer [player.GetComponent<PlayerController> ().getPlayerType ()].GetComponentsInChildren<Rigidbody2D> ()){
+			rgb2.AddForce (new Vector2(Random.value * 200f * 2 - 0.2f,Random.value * 100f * 2 - 0.2f));
+		}
+		gameObject.GetComponent<FlashController> ().flashNow ();
 		if(score > PlayerPrefs.GetInt("Highscore")){
 			PlayerPrefs.SetInt ("Highscore",score);
 		}
 		HighScoreText.text = PlayerPrefs.GetInt ("Highscore").ToString();
-		gameOver = true;
+
 		Invoke ("doSetActive",0.5f);
 	}
 
@@ -60,5 +68,10 @@ public class GameController : MonoBehaviour {
 
 	void doSetActive(){
 		gameOverText.SetActive (true);
+		gameOver = true;
+	}
+
+	void reloadGame(){
+		
 	}
 }

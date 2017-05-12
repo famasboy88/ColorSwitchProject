@@ -38,15 +38,19 @@ public class PlayerController : MonoBehaviour {
 		if (target.tag == "switchWhite") {
 			this.gameObject.GetComponent<SpriteRenderer> ().sprite = playerSprite [0];
 			GameObject.FindGameObjectWithTag ("switchWhite").SetActive (false);
+			this.playerType = 0;
 		} else if (target.tag == "switchBlue") {
 			this.gameObject.GetComponent<SpriteRenderer> ().sprite = playerSprite [1];
 			GameObject.FindGameObjectWithTag ("switchBlue").SetActive (false);
+			this.playerType = 1;
 		} else if (target.tag == "switchGreen") {
 			this.gameObject.GetComponent<SpriteRenderer> ().sprite = playerSprite [2];
 			GameObject.FindGameObjectWithTag ("switchGreen").SetActive (false);
+			this.playerType = 2;
 		} else if (target.tag == "switchOrange") {
 			this.gameObject.GetComponent<SpriteRenderer> ().sprite = playerSprite [3];
 			GameObject.FindGameObjectWithTag ("switchOrange").SetActive (false);
+			this.playerType = 3;
 		}
 	}
 }

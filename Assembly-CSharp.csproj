@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Enemy Scripts\RotateController.cs" />
      <Compile Include="Assets\Scripts\Main UI scripts\AddScoreController.cs" />
      <Compile Include="Assets\Scripts\Main UI scripts\BackgroundController.cs" />
+     <Compile Include="Assets\Scripts\Main UI scripts\CameraShakeController.cs" />
      <Compile Include="Assets\Scripts\Main UI scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\Main UI scripts\VerticalPoolController.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\PlayerController.cs" />

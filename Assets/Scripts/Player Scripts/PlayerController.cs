@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour {
 		if(target.tag=="Enemy"){
 			GameController.instance.setIsDead (true);
 			GameController.instance.playerDied ();
-			Destroy (this.gameObject);
+			this.gameObject.SetActive (false);
 		}
 
 		if (target.tag == "switchWhite") {
